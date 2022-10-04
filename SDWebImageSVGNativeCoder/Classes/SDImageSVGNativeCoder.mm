@@ -72,6 +72,12 @@
     if (CGSizeEqualToSize(svgSize, CGSizeZero)) {
         // If user don't provide view port size, use the view box size
         svgSize = CGSizeMake(doc->Width(), doc->Height());
+    } else if (svgSize.width == 0) {
+        // If width is 0, match the height
+        svgSize.width = svgSize.height;
+    } else if (svgSize.height == 0) {
+        // If height is 0, match the width
+        svgSize.height = svgSize.width;
     }
     
     // Draw on CGContext
